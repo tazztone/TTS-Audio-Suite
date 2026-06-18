@@ -925,7 +925,7 @@ engines:
 
   - id: granite-asr
     name: Granite ASR
-    models: "granite-4.0-1b-speech"
+    models: "granite-speech-4.1-2b, granite-speech-4.1-2b-plus, granite-4.0-1b-speech"
     size: "~4.6GB"
     license: "Apache-2.0"
     commercial: true
@@ -944,12 +944,24 @@ engines:
       - "Optional forced aligner auto-routed through shared legacy T4 runtime"
 
     model_sources:
+      - component: "granite-speech-4.1-2b"
+        source_name: "ibm-granite/granite-speech-4.1-2b"
+        source_url: "https://huggingface.co/ibm-granite/granite-speech-4.1-2b"
+        size: "~4.6GB"
+        auto_download: true
+        notes: "Main Granite ASR / AST model (latest default)"
+      - component: "granite-speech-4.1-2b-plus"
+        source_name: "ibm-granite/granite-speech-4.1-2b-plus"
+        source_url: "https://huggingface.co/ibm-granite/granite-speech-4.1-2b-plus"
+        size: "~4.6GB"
+        auto_download: true
+        notes: "ASR with native timestamps and speaker attribution (excludes Japanese)"
       - component: "granite-4.0-1b-speech"
         source_name: "ibm-granite/granite-4.0-1b-speech"
         source_url: "https://huggingface.co/ibm-granite/granite-4.0-1b-speech"
         size: "~4.6GB"
         auto_download: true
-        notes: "Main Granite ASR / AST model"
+        notes: "Legacy 1B multilingual ASR / AST model"
       - component: "Qwen3-ForcedAligner-0.6B"
         source_name: "Qwen/Qwen3-ForcedAligner-0.6B"
         source_url: "https://huggingface.co/Qwen/Qwen3-ForcedAligner-0.6B"
@@ -1879,9 +1891,29 @@ model_layouts_markdown: |
 
   ```text
   ComfyUI/models/TTS/granite_asr/
+  ├── granite-speech-4.1-2b/
+  │   ├── config.json
+  │   ├── chat_template.jinja
+  │   ├── model.safetensors.index.json
+  │   ├── model-00001-of-00003.safetensors
+  │   ├── model-00002-of-00003.safetensors
+  │   ├── model-00003-of-00003.safetensors
+  │   └── tokenizer / processor / BPE files...
+  ├── granite-speech-4.1-2b-plus/
+  │   ├── config.json
+  │   ├── generation_config.json
+  │   ├── processor_config.json
+  │   ├── chat_template.jinja
+  │   ├── tokenizer.json
+  │   ├── tokenizer_config.json
+  │   ├── model.safetensors.index.json
+  │   ├── model-00001-of-00003.safetensors
+  │   ├── model-00002-of-00003.safetensors
+  │   └── model-00003-of-00003.safetensors
   └── granite-4.0-1b-speech/
       ├── config.json
       ├── chat_template.jinja
+      ├── model.safetensors.index.json
       ├── model-00001-of-00003.safetensors
       ├── model-00002-of-00003.safetensors
       ├── model-00003-of-00003.safetensors

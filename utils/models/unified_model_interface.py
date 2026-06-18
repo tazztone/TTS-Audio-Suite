@@ -1834,7 +1834,7 @@ def register_granite_asr_factory():
                 f"Granite ASR requires transformers>=4.52.1, found {transformers.__version__}"
             )
 
-        model_name = config.model_name or "granite-4.0-1b-speech"
+        model_name = config.model_name or "granite-speech-4.1-2b"
         model_path = config.model_path or model_name
         device = config.device or "auto"
 

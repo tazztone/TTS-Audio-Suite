@@ -285,9 +285,29 @@ Notes:
 
 ```text
 ComfyUI/models/TTS/granite_asr/
+├── granite-speech-4.1-2b/
+│   ├── config.json
+│   ├── chat_template.jinja
+│   ├── model.safetensors.index.json
+│   ├── model-00001-of-00003.safetensors
+│   ├── model-00002-of-00003.safetensors
+│   ├── model-00003-of-00003.safetensors
+│   └── tokenizer / processor / BPE files...
+├── granite-speech-4.1-2b-plus/
+│   ├── config.json
+│   ├── generation_config.json
+│   ├── processor_config.json
+│   ├── chat_template.jinja
+│   ├── tokenizer.json
+│   ├── tokenizer_config.json
+│   ├── model.safetensors.index.json
+│   ├── model-00001-of-00003.safetensors
+│   ├── model-00002-of-00003.safetensors
+│   └── model-00003-of-00003.safetensors
 └── granite-4.0-1b-speech/
     ├── config.json
     ├── chat_template.jinja
+    ├── model.safetensors.index.json
     ├── model-00001-of-00003.safetensors
     ├── model-00002-of-00003.safetensors
     ├── model-00003-of-00003.safetensors
