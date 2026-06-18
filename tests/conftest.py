@@ -48,7 +48,12 @@ collect_ignore = ["__init__.py", "nodes.py"]
 CUSTOM_NODE_ROOT = Path(__file__).parent.parent  # tests/ -> TTS-Audio-Suite/
 DEFAULT_COMFY_ROOT = CUSTOM_NODE_ROOT.parent.parent  # Navigate to Comfy-new
 COMFY_ROOT = Path(os.environ.get("TTS_SUITE_TEST_COMFY_ROOT", str(DEFAULT_COMFY_ROOT)))
-DEFAULT_VENV_PYTHON = COMFY_ROOT / "venv" / "Scripts" / "python.exe"  # Windows
+
+if os.name == "nt":
+    DEFAULT_VENV_PYTHON = COMFY_ROOT / "venv" / "Scripts" / "python.exe"
+else:
+    DEFAULT_VENV_PYTHON = COMFY_ROOT / "venv" / "bin" / "python"
+
 VENV_PYTHON = Path(os.environ.get("TTS_SUITE_TEST_VENV_PYTHON", str(DEFAULT_VENV_PYTHON)))
 
 
