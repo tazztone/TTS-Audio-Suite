@@ -25,7 +25,7 @@ if not os.path.exists(model_path):
     sys.exit(1)
 
 # Add paths (matching unified_model_interface.py)
-project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 bundled_cosyvoice_path = os.path.join(project_root, "engines", "cosyvoice", "impl")
 matcha_path = os.path.join(bundled_cosyvoice_path, "third_party", "Matcha-TTS")
 

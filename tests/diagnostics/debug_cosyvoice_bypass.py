@@ -7,7 +7,7 @@ import os
 
 # Add paths - Auto-detect based on script location
 script_dir = os.path.dirname(os.path.abspath(__file__))
-project_root = os.path.dirname(script_dir)
+project_root = os.path.dirname(os.path.dirname(script_dir))
 bundled_cosyvoice_path = os.path.join(project_root, "engines", "cosyvoice", "impl")
 matcha_path = os.path.join(bundled_cosyvoice_path, "third_party", "Matcha-TTS")
 

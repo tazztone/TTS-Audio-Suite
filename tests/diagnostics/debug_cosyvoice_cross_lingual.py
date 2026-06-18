@@ -6,7 +6,7 @@ import torchaudio
 import logging
 
 # Add project root to path
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 
 # Add ComfyUI root to path for folder_paths module
 # sys.path.append(r"C:\_stability_matrix\Data\Packages\Comfy-new")
