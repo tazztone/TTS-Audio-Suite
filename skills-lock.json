@@ -54,6 +54,12 @@
       "sourceType": "github",
       "skillPath": "plugins/comfyui-custom-nodes/skills/comfyui-node-packaging/SKILL.md",
       "computedHash": "46073d1e01b40ab15a1f14f09a3754e38b9f5bf25f383d90c225234770dc454a"
+    },
+    "comfyui-node-testing": {
+      "source": "tazztone/comfyui-custom-node-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/comfyui-custom-nodes/skills/comfyui-node-testing/SKILL.md",
+      "computedHash": "5f9c1f9abcd68f39db71bb992d77d8d59ea5898156eb5c84c3a257de8ce65cad"
     }
   }
 }
