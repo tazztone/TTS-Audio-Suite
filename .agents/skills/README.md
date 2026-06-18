@@ -99,30 +99,24 @@ The repository-specific skills are prefixed with `audiosuite-` or named for key 
 
 ## 🎛️ CLI Usage
 
-Use the global skills CLI to manage or list workspace skills:
+Use the global skills CLI to manage, list, install, or upgrade workspace skills:
 
 ```bash
 # List all workspace and global skills
 npx skills list
 
-# Register a new skill folder
+# Register a local skill folder
 npx skills add <folder-path>
 
-# Remove a registered skill folder
+# Remove a registered local skill folder
 npx skills remove <folder-path>
-```
 
-### Upgrading & Installing ComfyUI Node Skills
-
-For external node skills (like `comfyui-node-testing` from `tazztone/comfyui-custom-node-skills`), you can install and upgrade them dynamically:
-
-```bash
-# Install a specific skill
+# Install a specific remote skill (e.g. comfyui-node-testing)
 npx skills add tazztone/comfyui-custom-node-skills --skill comfyui-node-testing
 
-# Upgrade a specific skill
+# Upgrade a specific remote skill
 npx skills@latest upgrade tazztone/comfyui-custom-node-skills --skill comfyui-node-testing
 
-# Upgrade all skills from the repository at once
+# Upgrade all remote skills at once
 npx skills@latest upgrade tazztone/comfyui-custom-node-skills
 ```
