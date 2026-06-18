@@ -218,8 +218,6 @@ docs/Dev reports/CLAUDE_VERSION_MANAGEMENT_GUIDE.md
 .claude/
 
 #codex
-*AGENTS.md
-AGENTS.md
 
 # Antigravity / agent configuration
 .agent/
