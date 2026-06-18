@@ -1,6 +1,6 @@
 ---
 name: comfyui-node-lifecycle
-description: ComfyUI node execution lifecycle - caching, fingerprint_inputs/IS_CHANGED, validate_inputs/VALIDATE_INPUTS, check_lazy_status, execution order. Use when debugging execution, implementing caching control, input validation, or understanding execution flow.
+description: Use when debugging ComfyUI execution flow, caching (fingerprint_inputs), or input validation.
 ---
 
 # ComfyUI Node Execution Lifecycle
@@ -73,12 +73,7 @@ class RandomNode(io.ComfyNode):
 - If **different** → re-execute the node
 - If `fingerprint_inputs` is not defined → cache based on input values
 
-**V1 equivalent** (`IS_CHANGED`):
-```python
-@classmethod
-def IS_CHANGED(s, min_val, max_val):
-    return time.time()  # always re-execute
-```
+For legacy V1 `IS_CHANGED` details, see [comfyui-node-migration](../comfyui-node-migration/SKILL.md).
 
 ### not_idempotent Flag
 
@@ -138,14 +133,7 @@ class ValidatedNode(io.ComfyNode):
         return io.NodeOutput(torch.zeros(1, height, width, 3))
 ```
 
-**V1 equivalent**:
-```python
-@classmethod
-def VALIDATE_INPUTS(s, width, height):
-    if width % 8 != 0:
-        return "Width must be a multiple of 8"
-    return True
-```
+For legacy V1 `VALIDATE_INPUTS` details, see [comfyui-node-migration](../comfyui-node-migration/SKILL.md).
 
 ### Skipping Type Validation
 
@@ -221,10 +209,7 @@ class SaveMyData(io.ComfyNode):
 # Widget values: use widget_value[0] to get the scalar
 # Shorter lists are padded by repeating the last value
 
-# V1: INPUT_IS_LIST = True to receive full lists
-class ListNode:
-    INPUT_IS_LIST = True
-    # Now execute() receives lists instead of individual items
+# For legacy V1 INPUT_IS_LIST details, see comfyui-node-migration.
 ```
 
 ### Outputting Lists
@@ -233,8 +218,7 @@ class ListNode:
 # V3
 io.Image.Output("IMAGE", is_output_list=True)
 
-# V1
-OUTPUT_IS_LIST = (True,)  # tuple matching RETURN_TYPES
+# For legacy V1 OUTPUT_IS_LIST details, see comfyui-node-migration.
 ```
 
 ## Error Handling
@@ -343,3 +327,4 @@ class FullLifecycleNode(io.ComfyNode):
 - `comfyui-node-inputs` - Input types and lazy evaluation
 - `comfyui-node-advanced` - Expansion, MatchType, DynamicCombo
 - `comfyui-node-outputs` - UI outputs and previews
+- `comfyui-node-migration` - V1 to V3 migration and legacy references

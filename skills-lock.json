@@ -2,58 +2,58 @@
   "version": 1,
   "skills": {
     "comfyui-node-advanced": {
-      "source": "jtydhr88/comfyui-custom-node-skills",
+      "source": "tazztone/comfyui-custom-node-skills",
       "sourceType": "github",
       "skillPath": "plugins/comfyui-custom-nodes/skills/comfyui-node-advanced/SKILL.md",
-      "computedHash": "c096e68c33360e28abe06b69e531b83f3dc826a40ea21e46b4c8a28f1fa4aefd"
+      "computedHash": "37468dd4c36cc34d48e33c68e256706700dfa322f0a856a08caeeff6f759534c"
     },
     "comfyui-node-basics": {
-      "source": "jtydhr88/comfyui-custom-node-skills",
+      "source": "tazztone/comfyui-custom-node-skills",
       "sourceType": "github",
       "skillPath": "plugins/comfyui-custom-nodes/skills/comfyui-node-basics/SKILL.md",
-      "computedHash": "160a565a09d779b4e19cd0c61b9ee1d5e9491e0fe54b648632c15be6e14855a0"
+      "computedHash": "27a09ee0cd37d68efd03e2b328f80944f1c812e57fe0d8534bb5f3641da75b2a"
     },
     "comfyui-node-datatypes": {
-      "source": "jtydhr88/comfyui-custom-node-skills",
+      "source": "tazztone/comfyui-custom-node-skills",
       "sourceType": "github",
       "skillPath": "plugins/comfyui-custom-nodes/skills/comfyui-node-datatypes/SKILL.md",
-      "computedHash": "d9c9130075d005c82c2dd406ffde1bff3035bcca4276c3ce79c40df356d3b771"
+      "computedHash": "75bbed6d2892822770f21df9061f6dc7f072e28aa2ff12470c545a687a3d7e5a"
     },
     "comfyui-node-frontend": {
-      "source": "jtydhr88/comfyui-custom-node-skills",
+      "source": "tazztone/comfyui-custom-node-skills",
       "sourceType": "github",
       "skillPath": "plugins/comfyui-custom-nodes/skills/comfyui-node-frontend/SKILL.md",
-      "computedHash": "1853a9feb9c2c0bc759c9daa7cafd1114d01a87bfdbc2a94c595dda809d62663"
+      "computedHash": "20cd1a73881e198478a2f0346390652054e0728be862f2adeca33aeb3991f548"
     },
     "comfyui-node-inputs": {
-      "source": "jtydhr88/comfyui-custom-node-skills",
+      "source": "tazztone/comfyui-custom-node-skills",
       "sourceType": "github",
       "skillPath": "plugins/comfyui-custom-nodes/skills/comfyui-node-inputs/SKILL.md",
-      "computedHash": "29888eb83e1173aed0627b2c106f7deaaa7ca59a547e6f83ff9893ea9bbd73dd"
+      "computedHash": "359ed5a3fa1c9cba47c16e19a6a7f6bf250c9da77114e46852bf739785cae030"
     },
     "comfyui-node-lifecycle": {
-      "source": "jtydhr88/comfyui-custom-node-skills",
+      "source": "tazztone/comfyui-custom-node-skills",
       "sourceType": "github",
       "skillPath": "plugins/comfyui-custom-nodes/skills/comfyui-node-lifecycle/SKILL.md",
-      "computedHash": "a09eac7fdd8c3978f425bc2dcba18dd5a47641f342de72d8949814206aedddc9"
+      "computedHash": "fd8ee27e2b5343b6e6bdf001aee03fd9a2d25beb11d93428f0cd60a5d5b1601a"
     },
     "comfyui-node-migration": {
-      "source": "jtydhr88/comfyui-custom-node-skills",
+      "source": "tazztone/comfyui-custom-node-skills",
       "sourceType": "github",
       "skillPath": "plugins/comfyui-custom-nodes/skills/comfyui-node-migration/SKILL.md",
-      "computedHash": "213863c4d3bac3aa34b38507c0fbca7eb774b50df6a20e3cba32ab3ca0057569"
+      "computedHash": "0f0d3dde89be948dc3756e66b26137a4a3dbfb522b1821b3ce4ed1620f1255e6"
     },
     "comfyui-node-outputs": {
-      "source": "jtydhr88/comfyui-custom-node-skills",
+      "source": "tazztone/comfyui-custom-node-skills",
       "sourceType": "github",
       "skillPath": "plugins/comfyui-custom-nodes/skills/comfyui-node-outputs/SKILL.md",
-      "computedHash": "3efce7a21b4e02f91ec9353cb2431ebc77044bff0f68ef7d81feb744f86946b3"
+      "computedHash": "e0a997a186e00e2b09f10092020cdb5478078dfd59f3f8b17ed3ce5e5e62cf41"
     },
     "comfyui-node-packaging": {
-      "source": "jtydhr88/comfyui-custom-node-skills",
+      "source": "tazztone/comfyui-custom-node-skills",
       "sourceType": "github",
       "skillPath": "plugins/comfyui-custom-nodes/skills/comfyui-node-packaging/SKILL.md",
-      "computedHash": "a64a0353af48aeb414c55d3826a1a2d512604c497912503c538497f8311588dd"
+      "computedHash": "46073d1e01b40ab15a1f14f09a3754e38b9f5bf25f383d90c225234770dc454a"
     }
   }
 }
