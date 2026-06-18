@@ -16,7 +16,7 @@ python3 tests/run_tests.py -m unit
 python3 tests/run_tests.py -m integration
 
 # Run all tests
-python3 tests/run_tests.py --all
+python3 tests/run_tests.py
 ```
 
 ---
@@ -40,6 +40,25 @@ python3 tests/run_tests.py --markers
 
 - **[tests/unit/](file:///home/tazztone/Applications/Data/Packages/ComfyTTS/custom_nodes/TTS-Audio-Suite/tests/unit/)**: Standalone unit tests checking calculations, text preprocessing (like pause tagging and SRT parsing), and audio utility functions.
 - **[tests/integration/](file:///home/tazztone/Applications/Data/Packages/ComfyTTS/custom_nodes/TTS-Audio-Suite/tests/integration/)**: Tests checking node registry status, workflow loaders, and end-to-end audio output validation using serialized ComfyUI pipeline configurations.
+- **[tests/diagnostics/](file:///home/tazztone/Applications/Data/Packages/ComfyTTS/custom_nodes/TTS-Audio-Suite/tests/diagnostics/)**: Dedicated folder containing manual testing, validation, and diagnostics tools. Excluded from automated pytest discovery.
+
+### Diagnostic & Helper Scripts
+
+These scripts are located under `tests/diagnostics/` and can be run directly using the python virtual environment to troubleshoot logic path components:
+
+| Script | Purpose |
+|------|---------|
+| `audio_sample_generator.py` | Generates sample audio files for manual waveform tests |
+| `debug_cosyvoice_bypass.py` | Tests CosyVoice3 bypass execution pathway |
+| `debug_cosyvoice_cross_lingual.py` | Debugs CosyVoice3 cross-lingual voice generation |
+| `debug_cosyvoice_direct.py` | Validates direct Python instantiation of CosyVoice3 engine |
+| `debug_path.py` | Simple checks for filesystem model directory paths |
+| `debug_voice_loading.py` | Probes voice loader logic and cached references |
+
+Run them using the Python virtual environment from the custom node directory root:
+```bash
+python3 tests/diagnostics/debug_voice_loading.py
+```
 
 ---
 
