@@ -59,7 +59,7 @@
       "source": "tazztone/comfyui-custom-node-skills",
       "sourceType": "github",
       "skillPath": "plugins/comfyui-custom-nodes/skills/comfyui-node-testing/SKILL.md",
-      "computedHash": "5f9c1f9abcd68f39db71bb992d77d8d59ea5898156eb5c84c3a257de8ce65cad"
+      "computedHash": "ceffe314623182e03aaa2b81014ca1243ab43ec254644cf0731001bed70a7986"
     }
   }
 }
