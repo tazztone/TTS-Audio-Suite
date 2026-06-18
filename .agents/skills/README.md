@@ -111,3 +111,18 @@ npx skills add <folder-path>
 # Remove a registered skill folder
 npx skills remove <folder-path>
 ```
+
+### Upgrading & Installing ComfyUI Node Skills
+
+For external node skills (like `comfyui-node-testing` from `tazztone/comfyui-custom-node-skills`), you can install and upgrade them dynamically:
+
+```bash
+# Install a specific skill
+npx skills add tazztone/comfyui-custom-node-skills --skill comfyui-node-testing
+
+# Upgrade a specific skill
+npx skills@latest upgrade tazztone/comfyui-custom-node-skills --skill comfyui-node-testing
+
+# Upgrade all skills from the repository at once
+npx skills@latest upgrade tazztone/comfyui-custom-node-skills
+```
