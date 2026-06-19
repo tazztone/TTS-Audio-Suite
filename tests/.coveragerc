@@ -1,0 +1,7 @@
+[run]
+omit =
+    **/voicefixer_bundled/**
+    **/step_audio_editx_impl/funasr_detach/**
+    **/video/openseeface/**
+    **/vibevoice_engine/kugelaudio_impl/**
+    **/tests/**

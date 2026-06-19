@@ -13,3 +13,18 @@ PublisherId = "diogod"
 DisplayName = "TTS Audio Suite"
 Icon = "https://raw.githubusercontent.com/diodiogod/TTS-Audio-Suite/main/example_workflows/Chatterbox SRT.jpg"
 includes = []
+
+[tool.coverage.run]
+omit = [
+    # Exclude bundled third-party libraries and model source implementations
+    "**/voicefixer_bundled/**",
+    "**/step_audio_editx_impl/funasr_detach/**",
+    "**/video/openseeface/**",
+    "**/vibevoice_engine/kugelaudio_impl/**",
+    # Exclude test files themselves from coverage calculations
+    "**/tests/**",
+]
+
+
+
+

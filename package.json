@@ -5,6 +5,9 @@
   "private": true,
   "scripts": {
     "test:unit": "python3 tests/run_tests.py -m unit",
+    "test:integration": "python3 tests/run_tests.py -m integration",
+    "test:all": "python3 tests/run_tests.py",
+    "test:coverage": "python3 tests/run_tests.py -m unit --cov=../utils --cov=../engines --cov-report=term-missing",
     "prepare": "husky"
   },
   "devDependencies": {
