@@ -242,3 +242,6 @@ tests/output/
 # TTS Audio Suite settings cache (user preferences)
 .inline_tag_settings_cache.json
 node_modules/
+
+# AI Agent skills
+.agents/
