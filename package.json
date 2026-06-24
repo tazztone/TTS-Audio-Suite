@@ -1,0 +1,18 @@
+{
+  "name": "tts-audio-suite",
+  "version": "5.1.1",
+  "description": "TTS Audio Suite pre-commit hooks and styling tools",
+  "private": true,
+  "scripts": {
+    "test:unit": "python3 tests/run_tests.py -m unit",
+    "test:integration": "python3 tests/run_tests.py -m integration",
+    "test:all": "python3 tests/run_tests.py",
+    "test:coverage": "python3 tests/run_tests.py -m unit --cov=../utils --cov=../engines --cov-report=term-missing",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "husky": "^9.1.7",
+    "lint-staged": "^16.4.0",
+    "prettier": "^3.8.4"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "*.py": [
+    "uvx ruff check --fix",
+    "uvx ruff format"
+  ],
+  "*.{js,css,json,md,yml,yaml}": "prettier --write"
+}

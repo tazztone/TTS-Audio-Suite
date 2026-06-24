@@ -15,18 +15,18 @@ import types
 from unittest.mock import MagicMock
 
 # Set testing environment
-os.environ['COMFYUI_TESTING'] = '1'
-os.environ['PYTEST_CURRENT_TEST'] = 'true'
+os.environ["COMFYUI_TESTING"] = "1"
+os.environ["PYTEST_CURRENT_TEST"] = "true"
 
 # Mock ComfyUI modules at module level - BEFORE any imports can trigger __init__.py
 _MOCK_MODULES = [
-    'comfy',
-    'comfy.model_management',
-    'comfy.utils',
-    'nodes',
-    'server',
-    'execution',
-    'comfy_extras',
+    "comfy",
+    "comfy.model_management",
+    "comfy.utils",
+    "nodes",
+    "server",
+    "execution",
+    "comfy_extras",
 ]
 
 for _module_name in _MOCK_MODULES:
@@ -36,7 +36,7 @@ for _module_name in _MOCK_MODULES:
 # folder_paths cannot be a raw MagicMock because code under test uses
 # folder_paths.models_dir in os.path.join/os.makedirs calls. A MagicMock there
 # creates junk folders like ./MagicMock/mock.models_dir/... on disk.
-if 'folder_paths' not in sys.modules:
+if "folder_paths" not in sys.modules:
     mock_folder_paths = types.ModuleType("folder_paths")
     mock_models_dir = tempfile.mkdtemp(prefix="tts_suite_test_models_")
     mock_input_dir = tempfile.mkdtemp(prefix="tts_suite_test_input_")
@@ -54,14 +54,14 @@ if 'folder_paths' not in sys.modules:
     mock_folder_paths.get_temp_directory = lambda: mock_temp_dir
     mock_folder_paths.get_annotated_filepath = lambda path: path
     mock_folder_paths.exists_annotated_filepath = lambda path: os.path.exists(path)
+    mock_folder_paths.add_model_folder_path = lambda *args, **kwargs: None
 
-    sys.modules['folder_paths'] = mock_folder_paths
+    sys.modules["folder_paths"] = mock_folder_paths
 
 # Now safe to import pytest and other modules
 import pytest
 import subprocess
 import time
-import json
 import requests
 from pathlib import Path
 from typing import Dict, Any, Optional
@@ -79,47 +79,46 @@ if os.name == "nt":
 else:
     DEFAULT_VENV_PYTHON = COMFY_ROOT / "venv" / "bin" / "python"
 
-VENV_PYTHON = Path(os.environ.get("TTS_SUITE_TEST_VENV_PYTHON", str(DEFAULT_VENV_PYTHON)))
+VENV_PYTHON = Path(
+    os.environ.get("TTS_SUITE_TEST_VENV_PYTHON", str(DEFAULT_VENV_PYTHON))
+)
 
 
 class ComfyUIAPIClient:
     """Helper class for interacting with ComfyUI API during tests"""
-    
+
     def __init__(self, base_url: str):
         self.base_url = base_url
         self.client_id = "pytest-test-client"
-    
+
     def get_system_stats(self) -> Dict[str, Any]:
         """Get system stats to verify server is running"""
         response = requests.get(f"{self.base_url}/system_stats", timeout=5)
         response.raise_for_status()
         return response.json()
-    
+
     def get_object_info(self) -> Dict[str, Any]:
         """Get all registered node info - useful for verifying nodes loaded"""
         response = requests.get(f"{self.base_url}/object_info", timeout=30)
         response.raise_for_status()
         return response.json()
-    
+
     def queue_prompt(self, workflow: Dict[str, Any]) -> Dict[str, Any]:
         """Queue a workflow for execution"""
         response = requests.post(
             f"{self.base_url}/prompt",
             json={"prompt": workflow, "client_id": self.client_id},
-            timeout=30
+            timeout=30,
         )
         response.raise_for_status()
         return response.json()
-    
+
     def get_history(self, prompt_id: str) -> Dict[str, Any]:
         """Get execution history for a prompt"""
-        response = requests.get(
-            f"{self.base_url}/history/{prompt_id}",
-            timeout=10
-        )
+        response = requests.get(f"{self.base_url}/history/{prompt_id}", timeout=10)
         response.raise_for_status()
         return response.json()
-    
+
     def wait_for_completion(self, prompt_id: str, timeout: int = 120) -> Dict[str, Any]:
         """Wait for workflow to complete"""
         start = time.time()
@@ -127,34 +126,33 @@ class ComfyUIAPIClient:
             try:
                 history = self.get_history(prompt_id)
                 if prompt_id in history:
-                    outputs = history[prompt_id].get("outputs", {})
                     status = history[prompt_id].get("status", {})
-                    
+
                     # Check if completed
                     if status.get("completed", False):
                         return history[prompt_id]
-                    
+
                     # Check for error
                     status_str = status.get("status_str", "")
                     if status_str == "error":
-                        raise RuntimeError(
-                            f"Workflow execution failed: {status}"
-                        )
+                        raise RuntimeError(f"Workflow execution failed: {status}")
             except requests.RequestException:
                 pass  # Server might be busy
-            
+
             time.sleep(0.5)
-        
+
         raise TimeoutError(
             f"Workflow did not complete within {timeout}s (prompt_id: {prompt_id})"
         )
-    
-    def execute_workflow(self, workflow: Dict[str, Any], timeout: int = 120) -> Dict[str, Any]:
+
+    def execute_workflow(
+        self, workflow: Dict[str, Any], timeout: int = 120
+    ) -> Dict[str, Any]:
         """Queue workflow and wait for completion"""
         result = self.queue_prompt(workflow)
         prompt_id = result["prompt_id"]
         return self.wait_for_completion(prompt_id, timeout)
-    
+
     def node_exists(self, node_class: str) -> bool:
         """Check if a node class is registered"""
         try:
@@ -169,12 +167,12 @@ def comfyui_server():
     """
     Start ComfyUI server for the entire test session.
     Automatically shuts down when tests complete.
-    
+
     Yields:
         dict with 'url' and 'process' keys
     """
-    print("\n🚀 Starting ComfyUI server for integration tests...")
-    
+    print("\n🚀 Starting ComfyUI server for integration tests...")  # noqa: T201
+
     # Check if server is already running
     comfy_host = os.environ.get("TTS_SUITE_TEST_HOST", "127.0.0.1")
     comfy_port = int(os.environ.get("TTS_SUITE_TEST_PORT", "8188"))
@@ -182,14 +180,16 @@ def comfyui_server():
     try:
         response = requests.get(f"{server_url}/system_stats", timeout=2)
         if response.status_code == 200:
-            print(f"✅ ComfyUI server already running at {server_url}")
+            print(f"✅ ComfyUI server already running at {server_url}")  # noqa: T201
             yield {"url": server_url, "process": None, "external": True}
             return
     except (requests.ConnectionError, requests.Timeout):
         pass  # Server not running, we'll start it
-    
+
     # Start ComfyUI in subprocess with process group isolation and a clean env (no COMFYUI_TESTING)
-    creation_flags = subprocess.CREATE_NEW_PROCESS_GROUP if sys.platform == "win32" else 0
+    creation_flags = (
+        subprocess.CREATE_NEW_PROCESS_GROUP if sys.platform == "win32" else 0
+    )
     server_env = os.environ.copy()
     server_env.pop("COMFYUI_TESTING", None)
     server_env.pop("PYTEST_CURRENT_TEST", None)
@@ -201,35 +201,37 @@ def comfyui_server():
         [
             str(VENV_PYTHON),
             "main.py",
-            "--listen", comfy_host,
-            "--port", str(comfy_port),
+            "--listen",
+            comfy_host,
+            "--port",
+            str(comfy_port),
             "--disable-auto-launch",
-            "--cpu"  # Use CPU for faster startup in tests
+            "--cpu",  # Use CPU for faster startup in tests
         ],
         cwd=str(COMFY_ROOT),
         stdout=log_file,
         stderr=subprocess.STDOUT,
         creationflags=creation_flags,
         preexec_fn=os.setsid if sys.platform != "win32" else None,
-        env=server_env
+        env=server_env,
     )
-    
+
     # Wait for server to be ready
     max_retries = 120  # 2 minutes timeout for model loading
     retry_count = 0
-    
+
     while retry_count < max_retries:
         try:
             response = requests.get(f"{server_url}/system_stats", timeout=2)
             if response.status_code == 200:
-                print(f"✅ ComfyUI server ready at {server_url}")
+                print(f"✅ ComfyUI server ready at {server_url}")  # noqa: T201
                 break
         except (requests.ConnectionError, requests.Timeout):
             time.sleep(1)
             retry_count += 1
             if retry_count % 15 == 0:
-                print(f"⏳ Waiting for server... ({retry_count}s)")
-    
+                print(f"⏳ Waiting for server... ({retry_count}s)")  # noqa: T201
+
     if retry_count >= max_retries:
         # Try to get any error output
         process.terminate()
@@ -239,23 +241,24 @@ def comfyui_server():
                 error_lines = f.read()[-2000:]
         except Exception:
             error_lines = "Could not capture output"
-        
+
         raise RuntimeError(
             f"❌ ComfyUI server failed to start within {max_retries}s\n"
             f"Last output:\n{error_lines}"
         )
-    
+
     try:
         yield {"url": server_url, "process": process, "external": False}
     finally:
         # Teardown
         if process and process.poll() is None:
-            print("\n🛑 Shutting down ComfyUI server...")
+            print("\n🛑 Shutting down ComfyUI server...")  # noqa: T201
             if sys.platform == "win32":
                 process.terminate()
             else:
                 try:
                     import signal
+
                     os.killpg(os.getpgid(process.pid), signal.SIGTERM)
                 except ProcessLookupError:
                     process.terminate()
@@ -264,7 +267,7 @@ def comfyui_server():
             except subprocess.TimeoutExpired:
                 process.kill()
                 process.wait()
-            print("✅ Server stopped")
+            print("✅ Server stopped")  # noqa: T201
         log_file.close()
 
 
@@ -294,6 +297,7 @@ def sample_voice_path() -> Optional[Path]:
 # ============================================================================
 # Unit test fixtures (no server required)
 # ============================================================================
+
 
 @pytest.fixture
 def sample_srt_content() -> str:
